@@ -11,13 +11,10 @@ basket <- data.frame("Food" = c("Apples", "Bananas", "Carrots"),
                      "Quantity" = c(12, 6, 2))
 
 #Se estima el total de las compras
-# create the total
-total <- 0
-# loop over the data.frame and add the running total
-for(row in 1:nrow(basket))
-  total <- total + (basket$PricePerUnit[row] * basket$Quantity[row])
-total
 
+
+total <- sum(basket$PricePerUnit * basket$Quantity)
+total
 
 # create a vector of the possible hex code values (0-9 and A-F)
 hex <- c(0:9, LETTERS[1:6])
