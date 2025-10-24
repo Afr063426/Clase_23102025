@@ -11,13 +11,10 @@ basket <- data.frame("Food" = c("Apples", "Bananas", "Carrots"),
                      "Quantity" = c(12, 6, 2))
 
 #Se estima el total de las compras
-# create the total
-total <- 0
-# loop over the data.frame and add the running total
-for(row in 1:nrow(basket))
-  total <- total + (basket$PricePerUnit[row] * basket$Quantity[row])
-total
 
+
+total <- sum(basket$PricePerUnit * basket$Quantity)
+total
 
 # create a vector of the possible hex code values (0-9 and A-F)
 hex <- c(0:9, LETTERS[1:6])
@@ -32,27 +29,19 @@ df <- data.frame("red" = sample(0:255, rows, replace = TRUE),
                  "blue" = sample(0:255, rows, replace = TRUE))
 
 
-#Veamo otro ejemplo 
-for(r in 1:nrow(df)) {
-  # get a value for each position in the hex code
-  # first pair
-  h1 <- hex[floor(df$red[r] / 16) + 1]
-  h2 <- hex[df$red[r] %% 16 + 1]
+
+df$hex <- paste0(
+  "#", 
+  hex[floor(df$red/16) + 1], 
+  hex[df$red %% 16 + 1], 
+  hex[floor(df$green / 16) + 1], 
+  hex[df$green %% 16 + 1], 
+  hex[floor(df$blue / 16) + 1], 
+  hex[df$blue %% 16 + 1]
+)
+
+df  
   
-  # second pair
-  h3 <- hex[floor(df$green[r] / 16) + 1]
-  h4 <- hex[df$green[r] %% 16 + 1]
-
-  # third pair
-  h5 <- hex[floor(df$blue[r] / 16) + 1]
-  h6 <- hex[df$blue[r] %% 16 + 1]
-  
-  # assemble the values using `paste0` and assign it to the `hex` column for 
-  # the corresponding row
-  df$hex[r] <- paste0("#", h1, h2, h3, h4, h5, h6)
-}
-
-
 ows <- 10^4
 hex <- c(0:9, LETTERS[1:6])
 
