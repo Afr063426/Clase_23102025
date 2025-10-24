@@ -12,6 +12,8 @@ print(paste("Media calculada (sin NA):", media_valor1))
 
 # 2. Intentar una división que incluye un cero
 resultado_division <- datos$Valor1 / datos$Valor2
+promedio_division_sin_na <- mean(resultado_division, na.rm = TRUE)
+resultado_division <- ifelse(is.na(resultado_division), promedio_division_sin_na, resultado_division)
 print("Resultado de la división:")
 print(resultado_division)
 
